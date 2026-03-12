@@ -16,18 +16,29 @@ export default function HomePage() {
   const { language, userName, grade, avatar } = useAppStore();
   const [activeTab, setActiveTab] = useState<Tab>("home");
 
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? (language === "hi" ? "शुभ प्रभात" : language === "kn" ? "ಶುಭೋದಯ" : "Good Morning") 
+                 : hour < 17 ? (language === "hi" ? "नमस्ते" : language === "kn" ? "ನಮಸ್ಕಾರ" : "Good Afternoon")
+                 : (language === "hi" ? "शुभ संध्या" : language === "kn" ? "ಶುಭ ಸಂಜೆ" : "Good Evening");
+
   return (
-    <div className="min-h-screen transition-colors duration-500">
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Background Ornaments */}
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 bg-[#fbfdff]">
+        <div className="absolute top-[10%] left-[5%] w-64 h-64 bg-primary/5 rounded-full blur-[100px] animate-pulse-slow" />
+        <div className="absolute bottom-[20%] right-[10%] w-96 h-96 bg-fun-purple/5 rounded-full blur-[120px] animate-pulse-slow" style={{ animationDelay: '2s' }} />
+      </div>
+
       <Navbar />
 
       {/* Tab Navigation */}
-      <div className="max-w-7xl mx-auto px-4 pt-8">
-        <div className="flex gap-2 bg-white/50 backdrop-blur-md rounded-3xl p-2 shadow-2xl shadow-primary/5 w-fit mx-auto border border-white/50 premium-shadow">
+      <div className="max-w-7xl mx-auto px-4 pt-12">
+        <div className="flex gap-2 bg-white p-2 rounded-3xl shadow-2xl shadow-black/5 w-fit mx-auto border border-gray-100">
           <button
             onClick={() => setActiveTab("home")}
-            className={`flex items-center gap-2 px-8 py-3 rounded-2xl font-bold text-sm transition-all duration-300 ${activeTab === "home"
-              ? "bg-primary text-white shadow-lg shadow-primary/30 scale-105"
-              : "text-gray-500 hover:bg-primary/10 hover:text-primary"
+            className={`flex items-center gap-2 px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 ${activeTab === "home"
+              ? "bg-primary text-white shadow-xl shadow-primary/30"
+              : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
               }`}
           >
             <Home className="w-4 h-4" />
@@ -35,18 +46,18 @@ export default function HomePage() {
           </button>
           <button
             onClick={() => setActiveTab("resource")}
-            className={`flex items-center gap-2 px-8 py-3 rounded-2xl font-bold text-sm transition-all duration-300 ${activeTab === "resource"
-              ? "bg-primary text-white shadow-lg shadow-primary/30 scale-105"
-              : "text-gray-500 hover:bg-primary/10 hover:text-primary"
+            className={`flex items-center gap-2 px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 ${activeTab === "resource"
+              ? "bg-primary text-white shadow-xl shadow-primary/30"
+              : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
               }`}
           >
             <UserCircle className="w-4 h-4" />
-            {language === "hi" ? "संसाधन व्यक्ति" : language === "kn" ? "ಸಂಪನ್ಮೂಲ ವ್ಯಕ್ತಿ" : "Resource Person"}
+            {language === "hi" ? "संसाधन" : language === "kn" ? "ಸಂಪನ್ಮೂಲ" : "Resource"}
           </button>
         </div>
       </div>
 
-      <main className="max-w-7xl mx-auto px-4 py-12">
+      <main className="max-w-7xl mx-auto px-4 py-16">
 
         {/* HOME TAB */}
         {activeTab === "home" && (
@@ -55,50 +66,48 @@ export default function HomePage() {
             <motion.section
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center mb-16 relative"
+              className="text-center mb-24 relative"
             >
+              <div className="absolute left-1/2 -translate-x-1/2 -top-10 flex gap-4 pointer-events-none">
+                <span className="text-4xl animate-float opacity-20">🚀</span>
+                <span className="text-4xl animate-float opacity-20" style={{ animationDelay: '1s' }}>✨</span>
+              </div>
+              
               <motion.div
-                animate={{ 
-                  rotate: [0, 5, -5, 0],
-                  y: [0, -10, 0]
-                }}
-                transition={{ 
-                  rotate: { repeat: Infinity, duration: 4 },
-                  y: { repeat: Infinity, duration: 3, ease: "easeInOut" }
-                }}
-                className="text-7xl mb-6 inline-block filter drop-shadow-2xl"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                className="text-8xl mb-10 inline-block drop-shadow-2xl"
               >
                 {avatar}
               </motion.div>
               
-              <h1 className="font-poppins font-bold text-5xl md:text-6xl mb-4 tracking-tight">
-                <span className="text-gradient">
-                  {t("appName", language)}
-                </span>
-              </h1>
-              
-              <p className="text-gray-500 text-xl font-nunito max-w-2xl mx-auto leading-relaxed mb-6">
-                {t("tagline", language)}
-              </p>
+              <div className="max-w-3xl mx-auto">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="mb-6 inline-flex items-center gap-3 bg-white px-6 py-2 rounded-full border border-gray-100 shadow-sm"
+                >
+                  <span className="text-xs font-black text-primary uppercase tracking-[0.3em]">{greeting}, {userName}!</span>
+                  <div className="w-2 h-2 rounded-full bg-success animate-pulse" />
+                </motion.div>
 
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-md px-6 py-3 rounded-2xl shadow-xl shadow-primary/5 border border-primary/10"
-              >
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-xl">
-                  {avatar}
+                <h1 className="font-poppins font-black text-6xl md:text-7xl mb-6 tracking-tight leading-[1.1] text-gray-900">
+                  Ready to <span className="text-primary italic">Explore</span> & Learn?
+                </h1>
+                
+                <p className="text-gray-500 text-xl font-medium max-w-xl mx-auto leading-relaxed mb-12">
+                  Dive into amazing stories, interactive activities, and unlock your true potential in Grade 5!
+                </p>
+
+                <div className="flex flex-wrap items-center justify-center gap-4">
+                  <button className="bg-primary text-white px-10 py-5 rounded-[2rem] font-black text-sm uppercase tracking-widest shadow-2xl shadow-primary/30 hover:scale-105 active:scale-95 transition-all">
+                    Start Learning
+                  </button>
+                  <button className="bg-white text-gray-600 border-2 border-gray-100 px-10 py-5 rounded-[2rem] font-black text-sm uppercase tracking-widest hover:bg-gray-50 transition-all">
+                    View Progress
+                  </button>
                 </div>
-                <div className="text-left">
-                  <p className="text-primary font-black text-lg">
-                    {t("welcome", language)}, Sadiya! 👋
-                  </p>
-                  <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">
-                    Sadiya • Grade {grade}
-                  </p>
-                </div>
-              </motion.div>
+              </div>
             </motion.section>
 
             {/* Gamification Banner */}

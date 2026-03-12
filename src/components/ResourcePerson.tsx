@@ -16,73 +16,85 @@ export default function ResourcePerson() {
     const linkUrl = "https://scholar-sparkle-web.lovable.app/";
 
     return (
-        <div className="max-w-4xl mx-auto py-12 px-4">
+        <div className="max-w-5xl mx-auto py-12 px-2">
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-gray-100"
+                className="bg-white rounded-[3rem] shadow-2xl overflow-hidden border border-gray-100 premium-shadow"
             >
-                <div className="bg-gradient-to-br from-primary via-blue-600 to-fun-purple p-10 text-white text-center relative overflow-hidden">
-                    {/* Decorative Elements */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl" />
-                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full -ml-24 -mb-24 blur-3xl" />
+                <div className="bg-gradient-to-br from-gray-900 via-indigo-900 to-primary p-12 text-white text-center relative overflow-hidden">
+                    {/* Background Light Orbs */}
+                    <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full -mr-40 -mt-40 blur-3xl animate-pulse-slow" />
+                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/20 rounded-full -ml-32 -mb-32 blur-3xl" />
                     
                     <motion.div 
-                        initial={{ scale: 0.8 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring", damping: 12 }}
-                        className="inline-flex p-4 rounded-3xl bg-white/20 backdrop-blur-md mb-6 border border-white/30"
+                        initial={{ scale: 0.8, rotate: -10 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        className="inline-flex p-6 rounded-[2.5rem] bg-white/5 backdrop-blur-xl mb-8 border border-white/10 shadow-2xl"
                     >
-                        <UserCircle className="w-16 h-16" />
+                        <UserCircle className="w-20 h-20 text-white/90" />
                     </motion.div>
                     
-                    <h2 className="font-poppins font-bold text-4xl md:text-5xl mb-4 tracking-tight">
+                    <h2 className="font-poppins font-black text-5xl md:text-6xl mb-6 tracking-tighter">
                         {title}
                     </h2>
-                    <p className="text-white/80 text-lg max-w-lg mx-auto font-nunito leading-relaxed">
-                        {subtitle}
+                    <p className="text-white/60 text-xl max-w-xl mx-auto font-medium leading-relaxed italic">
+                        "{subtitle}"
                     </p>
                 </div>
 
-                <div className="p-10 flex flex-col items-center">
+                <div className="p-12 flex flex-col items-center bg-[#fcfdfe]">
                     <motion.div
-                        whileHover={{ scale: 1.02 }}
+                        whileHover={{ scale: 1.02, y: -5 }}
                         whileTap={{ scale: 0.98 }}
-                        className="w-full max-w-md"
+                        className="w-full max-w-xl"
                     >
                         <a
                             href={linkUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group flex items-center justify-between bg-primary text-white p-6 rounded-2xl font-bold text-xl shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300"
+                            className="group flex items-center justify-between bg-white text-gray-900 p-8 rounded-[2rem] font-black text-2xl shadow-2xl border border-gray-100 hover:border-primary/20 transition-all duration-500"
                         >
-                            <span className="flex items-center gap-3">
-                                <Sparkles className="w-6 h-6 animate-pulse" />
-                                Visit Official Profile
+                            <span className="flex items-center gap-4">
+                                <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center">
+                                    <Sparkles className="w-6 h-6 text-primary animate-pulse" />
+                                </div>
+                                Explore Profile
                             </span>
-                            <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                            <div className="w-12 h-12 bg-gray-900 text-white rounded-2xl flex items-center justify-center group-hover:bg-primary transition-colors">
+                                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                            </div>
                         </a>
                     </motion.div>
 
-                    <p className="mt-8 text-gray-400 text-sm flex items-center gap-2">
-                        <ExternalLink className="w-4 h-4" />
-                        Link: {linkUrl}
-                    </p>
-                    
-                    <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+                    <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
                         {[
-                            { label: "Academic Profile", icon: "🎓" },
-                            { label: "Research Work", icon: "🔬" },
-                            { label: "Expert Insights", icon: "💡" }
+                            { label: "Academic Profile", icon: "🎓", color: "bg-blue-50 text-blue-600" },
+                            { label: "Research Work", icon: "🔬", color: "bg-emerald-50 text-emerald-600" },
+                            { label: "Expert Insights", icon: "💡", color: "bg-amber-50 text-amber-600" }
                         ].map((item, i) => (
-                            <div key={i} className="bg-gray-50 p-4 rounded-2xl text-center border border-gray-100">
-                                <span className="text-2xl mb-2 block">{item.icon}</span>
-                                <span className="text-bold text-sm text-gray-600">{item.label}</span>
-                            </div>
+                            <motion.div 
+                                key={i} 
+                                whileHover={{ y: -5 }}
+                                className="bg-white p-8 rounded-[2rem] text-center border border-gray-100 shadow-sm"
+                            >
+                                <span className={`w-16 h-16 ${item.color} rounded-2xl flex items-center justify-center text-4xl mx-auto mb-4 shadow-inner`}>
+                                    {item.icon}
+                                </span>
+                                <span className="font-black text-sm text-gray-800 uppercase tracking-widest">{item.label}</span>
+                            </motion.div>
                         ))}
+                    </div>
+
+                    <div className="mt-12 p-4 bg-gray-50 rounded-2xl border border-dashed border-gray-200 w-full text-center">
+                        <p className="text-gray-400 text-xs flex items-center justify-center gap-2">
+                            <ExternalLink className="w-4 h-4" />
+                            Secure Link: <span className="font-medium text-gray-500">{linkUrl}</span>
+                        </p>
                     </div>
                 </div>
             </motion.div>
         </div>
     );
 }
+
