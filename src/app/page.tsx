@@ -136,21 +136,31 @@ export default function HomePage() {
             </motion.section>
 
             {/* Subject Cards */}
-            <section className="mb-16">
-              <div className="flex flex-col items-center mb-10">
-                <h2 className="font-poppins font-bold text-3xl mb-2">
-                  {t("chooseSubject", language)} 📚
+            <section className="mb-24 relative">
+              {/* Decorative background blur */}
+              <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
+
+              <div className="flex flex-col items-center mb-16 relative z-10">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="bg-primary/10 text-primary px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.3em] mb-4"
+                >
+                  Learning Catalog
+                </motion.div>
+                <h2 className="font-poppins font-black text-4xl md:text-5xl mb-4 text-center tracking-tight">
+                  {t("chooseSubject", language)} <span className="inline-block animate-bounce">📚</span>
                 </h2>
-                <div className="h-1.5 w-24 bg-gradient-to-r from-primary to-fun-purple rounded-full" />
+                <div className="h-2 w-32 bg-gradient-to-r from-primary via-indigo-500 to-fun-purple rounded-full" />
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 relative z-10">
                 {subjectsData.map((subject, i) => (
-                  <div key={subject.id} className="card-hover">
-                    <SubjectCard subject={subject} index={i} />
-                  </div>
+                  <SubjectCard key={subject.id} subject={subject} index={i} />
                 ))}
               </div>
             </section>
+
 
             {/* Features */}
             <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">

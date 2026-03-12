@@ -6,6 +6,8 @@ export interface SubjectInfo {
     icon: string;
     color: string;
     gradient: string;
+    lightBg: string;
+    accentColor: string;
     topicCount: number;
     description: Record<Language, string>;
 }
@@ -17,6 +19,8 @@ export const subjectsData: SubjectInfo[] = [
         icon: "🔢",
         color: "bg-indigo-500",
         gradient: "from-indigo-500 via-blue-500 to-cyan-500",
+        lightBg: "bg-indigo-50/50",
+        accentColor: "text-indigo-600",
         topicCount: 10,
         description: {
             en: "Explore numbers, shapes, and patterns through fun activities!",
@@ -30,6 +34,8 @@ export const subjectsData: SubjectInfo[] = [
         icon: "📖",
         color: "bg-emerald-500",
         gradient: "from-emerald-500 via-teal-500 to-cyan-600",
+        lightBg: "bg-emerald-50/50",
+        accentColor: "text-emerald-600",
         topicCount: 6,
         description: {
             en: "Build vocabulary, grammar, and reading skills with stories!",
@@ -43,6 +49,8 @@ export const subjectsData: SubjectInfo[] = [
         icon: "🇮🇳",
         color: "bg-orange-500",
         gradient: "from-orange-500 via-amber-500 to-yellow-500",
+        lightBg: "bg-orange-50/50",
+        accentColor: "text-orange-600",
         topicCount: 5,
         description: {
             en: "Learn Hindi through interactive word and sentence building!",
@@ -56,6 +64,8 @@ export const subjectsData: SubjectInfo[] = [
         icon: "🏛️",
         color: "bg-rose-500",
         gradient: "from-rose-500 via-pink-500 to-fuchsia-500",
+        lightBg: "bg-rose-50/50",
+        accentColor: "text-rose-600",
         topicCount: 5,
         description: {
             en: "Discover Kannada through letters, words, and stories!",
@@ -69,6 +79,8 @@ export const subjectsData: SubjectInfo[] = [
         icon: "🔬",
         color: "bg-cyan-500",
         gradient: "from-cyan-500 via-sky-500 to-blue-600",
+        lightBg: "bg-cyan-50/50",
+        accentColor: "text-cyan-600",
         topicCount: 7,
         description: {
             en: "Experiment with the wonders of nature and the human body!",
@@ -82,12 +94,15 @@ export const subjectsData: SubjectInfo[] = [
         icon: "🌍",
         color: "bg-violet-500",
         gradient: "from-violet-500 via-purple-500 to-indigo-600",
+        lightBg: "bg-violet-50/50",
+        accentColor: "text-violet-600",
         topicCount: 5,
         description: {
             en: "Explore maps, history, and the world around you!",
-            hi: "नक्शे, इतिहास और अपने आसपास की दुनिया का अन्वेषण करें!",
+            hi: "नक्शे, इतिहास and अपने आसपास की दुनिया का अन्वेषण करें!",
             kn: "ನಕ್ಷೆಗಳು, ಇತಿಹಾಸ ಮತ್ತು ನಿಮ್ಮ ಸುತ್ತಲಿನ ಜಗತ್ತನ್ನು ಅನ್ವೇಷಿಸಿ!",
         },
     },
 ];
+
 

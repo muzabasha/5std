@@ -17,49 +17,48 @@ export default function SubjectCard({ subject, index }: { subject: SubjectInfo; 
             className="group"
         >
             <Link href={`/subjects/${subject.id}`}>
-                <div className={`relative overflow-hidden rounded-[2rem] bg-gradient-to-br ${subject.gradient} p-8 text-white shadow-2xl shadow-black/10 cursor-pointer min-h-[280px] flex flex-col justify-between transition-all duration-500 group-hover:shadow-primary/20`}>
+                <div className={`relative overflow-hidden rounded-[2.5rem] ${subject.lightBg} border-2 border-white p-8 cursor-pointer min-h-[300px] flex flex-col justify-between transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-black/5 premium-shadow`}>
                     
-                    {/* Decorative background icon */}
-                    <div className="absolute -top-6 -right-6 text-[10rem] opacity-10 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-700">
-                        {subject.icon}
-                    </div>
+                    {/* Floating background gradient effect */}
+                    <div className={`absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br ${subject.gradient} opacity-10 blur-3xl group-hover:opacity-20 transition-opacity duration-700`} />
 
                     <div className="relative z-10">
                         <motion.div 
-                            whileHover={{ rotate: [0, -10, 10, 0] }}
-                            className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-4xl mb-6 border border-white/30 shadow-xl"
+                            whileHover={{ scale: 1.1, rotate: [0, -10, 10, 0] }}
+                            className={`w-20 h-20 bg-gradient-to-br ${subject.gradient} rounded-[2rem] flex items-center justify-center text-4xl mb-8 shadow-xl shadow-black/10`}
                         >
                             {subject.icon}
                         </motion.div>
                         
-                        <h3 className="font-poppins font-black text-2xl mb-2 tracking-tight group-hover:translate-x-1 transition-transform">
+                        <h3 className={`font-poppins font-black text-3xl mb-3 tracking-tight ${subject.accentColor} group-hover:translate-x-1 transition-transform duration-300`}>
                             {subject.name[language]}
                         </h3>
                         
-                        <p className="text-white/80 text-sm font-semibold leading-relaxed line-clamp-2">
+                        <p className="text-gray-500 text-base font-medium leading-relaxed line-clamp-2 pr-4">
                             {subject.description[language]}
                         </p>
                     </div>
 
-                    <div className="relative z-10 flex items-center justify-between mt-8 bg-black/10 backdrop-blur-sm p-3 rounded-2xl border border-white/10">
-                        <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-xs font-bold">
-                                {subject.topicCount}
-                            </div>
-                            <span className="text-[10px] font-black uppercase tracking-widest opacity-80">
-                                {t("topics", language)}
+                    <div className="relative z-10 flex items-center justify-between mt-10">
+                        <div className={`flex items-center gap-3 bg-white/80 backdrop-blur-sm px-5 py-2.5 rounded-2xl border border-white shadow-sm`}>
+                            <div className={`w-3 h-3 rounded-full ${subject.color} animate-pulse`} />
+                            <span className={`text-xs font-black uppercase tracking-widest ${subject.accentColor}`}>
+                                {subject.topicCount} {t("topics", language)}
                             </span>
                         </div>
+                        
                         <motion.div 
-                            animate={{ x: [0, 5, 0] }}
-                            transition={{ repeat: Infinity, duration: 1.5 }}
-                            className="bg-white text-black p-2 rounded-xl shadow-lg"
+                            whileHover={{ x: 5 }}
+                            className={`w-12 h-12 bg-white rounded-2xl shadow-lg flex items-center justify-center ${subject.accentColor} border border-gray-50`}
                         >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
                         </motion.div>
                     </div>
+
+                    {/* Subtle bottom accent line */}
+                    <div className={`absolute bottom-0 left-0 h-1.5 w-0 group-hover:w-full bg-gradient-to-r ${subject.gradient} transition-all duration-700`} />
                 </div>
             </Link>
         </motion.div>
