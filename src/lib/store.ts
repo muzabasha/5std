@@ -9,6 +9,10 @@ interface AppState {
     setUserRole: (role: UserRole) => void;
     userName: string;
     setUserName: (name: string) => void;
+    grade: number;
+    setGrade: (grade: number) => void;
+    avatar: string;
+    setAvatar: (avatar: string) => void;
     stars: number;
     coins: number;
     badges: Badge[];
@@ -30,8 +34,12 @@ export const useAppStore = create<AppState>()(
             setLanguage: (lang) => set({ language: lang }),
             userRole: "student",
             setUserRole: (role) => set({ userRole: role }),
-            userName: "Student",
+            userName: "Sadiya",
             setUserName: (name) => set({ userName: name }),
+            grade: 5,
+            setGrade: (grade) => set({ grade: grade }),
+            avatar: "👧",
+            setAvatar: (avatar) => set({ avatar: avatar }),
             stars: 0,
             coins: 0,
             badges: [],

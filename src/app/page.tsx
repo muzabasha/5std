@@ -13,20 +13,20 @@ import { Sparkles, BookOpen, Gamepad2, Brain, Home, UserCircle } from "lucide-re
 type Tab = "home" | "resource";
 
 export default function HomePage() {
-  const { language, userName } = useAppStore();
+  const { language, userName, grade, avatar } = useAppStore();
   const [activeTab, setActiveTab] = useState<Tab>("home");
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen transition-colors duration-500">
       <Navbar />
 
       {/* Tab Navigation */}
-      <div className="max-w-7xl mx-auto px-4 pt-6">
-        <div className="flex gap-2 bg-white rounded-2xl p-1.5 shadow-sm w-fit mx-auto">
+      <div className="max-w-7xl mx-auto px-4 pt-8">
+        <div className="flex gap-2 bg-white/50 backdrop-blur-md rounded-3xl p-2 shadow-2xl shadow-primary/5 w-fit mx-auto border border-white/50 premium-shadow">
           <button
             onClick={() => setActiveTab("home")}
-            className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-sm transition-all ${activeTab === "home"
-              ? "bg-primary text-white shadow-md"
+            className={`flex items-center gap-2 px-8 py-3 rounded-2xl font-bold text-sm transition-all duration-300 ${activeTab === "home"
+              ? "bg-primary text-white shadow-lg shadow-primary/30 scale-105"
               : "text-gray-500 hover:bg-primary/10 hover:text-primary"
               }`}
           >
@@ -35,8 +35,8 @@ export default function HomePage() {
           </button>
           <button
             onClick={() => setActiveTab("resource")}
-            className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-sm transition-all ${activeTab === "resource"
-              ? "bg-primary text-white shadow-md"
+            className={`flex items-center gap-2 px-8 py-3 rounded-2xl font-bold text-sm transition-all duration-300 ${activeTab === "resource"
+              ? "bg-primary text-white shadow-lg shadow-primary/30 scale-105"
               : "text-gray-500 hover:bg-primary/10 hover:text-primary"
               }`}
           >
@@ -46,39 +46,63 @@ export default function HomePage() {
         </div>
       </div>
 
-      <main className="max-w-7xl mx-auto px-4 py-8">
+      <main className="max-w-7xl mx-auto px-4 py-12">
 
         {/* HOME TAB */}
         {activeTab === "home" && (
           <>
             {/* Hero Section */}
             <motion.section
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center mb-10"
+              className="text-center mb-16 relative"
             >
               <motion.div
-                animate={{ rotate: [0, 5, -5, 0] }}
-                transition={{ repeat: Infinity, duration: 4 }}
-                className="text-6xl mb-4 inline-block"
+                animate={{ 
+                  rotate: [0, 5, -5, 0],
+                  y: [0, -10, 0]
+                }}
+                transition={{ 
+                  rotate: { repeat: Infinity, duration: 4 },
+                  y: { repeat: Infinity, duration: 3, ease: "easeInOut" }
+                }}
+                className="text-7xl mb-6 inline-block filter drop-shadow-2xl"
               >
-                🧪
+                {avatar}
               </motion.div>
-              <h1 className="font-poppins font-bold text-4xl md:text-5xl mb-3">
-                <span className="text-gradient from-primary via-fun-purple to-accent">
+              
+              <h1 className="font-poppins font-bold text-5xl md:text-6xl mb-4 tracking-tight">
+                <span className="text-gradient">
                   {t("appName", language)}
                 </span>
               </h1>
-              <p className="text-gray-600 text-lg font-nunito max-w-xl mx-auto">
+              
+              <p className="text-gray-500 text-xl font-nunito max-w-2xl mx-auto leading-relaxed mb-6">
                 {t("tagline", language)}
               </p>
-              <p className="text-primary font-bold mt-2">
-                {t("welcome", language)}, {userName}! 👋
-              </p>
+
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-md px-6 py-3 rounded-2xl shadow-xl shadow-primary/5 border border-primary/10"
+              >
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-xl">
+                  {avatar}
+                </div>
+                <div className="text-left">
+                  <p className="text-primary font-black text-lg">
+                    {t("welcome", language)}, {userName}! 👋
+                  </p>
+                  <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">
+                    Student • Grade {grade}
+                  </p>
+                </div>
+              </motion.div>
             </motion.section>
 
             {/* Gamification Banner */}
-            <section className="mb-8">
+            <section className="mb-12">
               <GamificationBanner />
             </section>
 
@@ -87,60 +111,65 @@ export default function HomePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="mb-10"
+              className="mb-16"
             >
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 {[
-                  { icon: "🔍", label: t("explore", language), color: "bg-primary/10 text-primary" },
-                  { icon: "💡", label: t("understand", language), color: "bg-warning/10 text-warning-dark" },
-                  { icon: "🧪", label: t("experiment", language), color: "bg-success/10 text-success" },
-                  { icon: "✏️", label: t("practice", language), color: "bg-accent/10 text-accent" },
-                  { icon: "🚀", label: t("apply", language), color: "bg-fun-purple/10 text-fun-purple" },
+                  { icon: "🔍", label: t("explore", language), color: "bg-primary/10 text-primary border-primary/20" },
+                  { icon: "💡", label: t("understand", language), color: "bg-warning/10 text-warning border-warning/20" },
+                  { icon: "🧪", label: t("experiment", language), color: "bg-success/10 text-success border-success/20" },
+                  { icon: "✏️", label: t("practice", language), color: "bg-accent/10 text-accent border-accent/20" },
+                  { icon: "🚀", label: t("apply", language), color: "bg-fun-purple/10 text-fun-purple border-fun-purple/20" },
                 ].map((step, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 + i * 0.1 }}
-                    className={`${step.color} rounded-xl p-3 text-center`}
+                    className={`${step.color} rounded-2xl p-5 text-center border shadow-lg shadow-black/5 hover:scale-110 transition-transform duration-300`}
                   >
-                    <span className="text-2xl">{step.icon}</span>
-                    <p className="font-bold text-sm mt-1">{step.label}</p>
+                    <span className="text-3xl mb-2 block">{step.icon}</span>
+                    <p className="font-bold text-sm">{step.label}</p>
                   </motion.div>
                 ))}
               </div>
             </motion.section>
 
             {/* Subject Cards */}
-            <section className="mb-10">
-              <h2 className="font-poppins font-bold text-2xl mb-6 text-center">
-                {t("chooseSubject", language)} 📚
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <section className="mb-16">
+              <div className="flex flex-col items-center mb-10">
+                <h2 className="font-poppins font-bold text-3xl mb-2">
+                  {t("chooseSubject", language)} 📚
+                </h2>
+                <div className="h-1.5 w-24 bg-gradient-to-r from-primary to-fun-purple rounded-full" />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {subjectsData.map((subject, i) => (
-                  <SubjectCard key={subject.id} subject={subject} index={i} />
+                  <div key={subject.id} className="card-hover">
+                    <SubjectCard subject={subject} index={i} />
+                  </div>
                 ))}
               </div>
             </section>
 
             {/* Features */}
-            <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+            <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
               {[
-                { icon: <BookOpen className="w-6 h-6" />, title: "Story-Based Learning", desc: "Learn through engaging stories and real-life scenarios", color: "text-primary" },
-                { icon: <Gamepad2 className="w-6 h-6" />, title: "Fun Games & Activities", desc: "Interactive games, puzzles, and drag-drop activities", color: "text-success" },
-                { icon: <Brain className="w-6 h-6" />, title: "Smart Quizzes", desc: "Test your knowledge with instant feedback", color: "text-fun-purple" },
+                { icon: <BookOpen className="w-8 h-8" />, title: "Story-Based Learning", desc: "Learn through engaging stories and real-life scenarios", color: "text-primary", bg: "bg-primary/5" },
+                { icon: <Gamepad2 className="w-8 h-8" />, title: "Fun Games & Activities", desc: "Interactive games, puzzles, and drag-drop activities", color: "text-success", bg: "bg-success/5" },
+                { icon: <Brain className="w-8 h-8" />, title: "Smart Quizzes", desc: "Test your knowledge with instant feedback", color: "text-fun-purple", bg: "bg-fun-purple/5" },
               ].map((f, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.5 + i * 0.1 }}
-                  className="bg-white rounded-xl p-5 shadow-sm flex items-start gap-3"
+                  className={`bg-white rounded-3xl p-8 shadow-xl shadow-black/5 flex items-start gap-4 border border-gray-100 group hover:bg-gradient-to-br hover:from-white hover:to-gray-50 transition-all duration-300`}
                 >
-                  <div className={`${f.color}`}>{f.icon}</div>
+                  <div className={`${f.bg} ${f.color} p-4 rounded-2xl group-hover:scale-110 transition-transform`}>{f.icon}</div>
                   <div>
-                    <h3 className="font-bold text-sm">{f.title}</h3>
-                    <p className="text-gray-500 text-xs">{f.desc}</p>
+                    <h3 className="font-bold text-lg mb-1">{f.title}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -148,25 +177,30 @@ export default function HomePage() {
 
             {/* Daily Challenge */}
             <motion.section
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.7 }}
-              className="bg-gradient-to-r from-primary to-fun-purple rounded-2xl p-6 text-white text-center mb-8"
+              className="bg-gradient-to-br from-primary via-indigo-600 to-fun-purple rounded-[2.5rem] p-12 text-white text-center mb-12 relative overflow-hidden shadow-2xl shadow-primary/20"
             >
-              <Sparkles className="w-8 h-8 mx-auto mb-2" />
-              <h3 className="font-poppins font-bold text-xl mb-1">{t("dailyChallenge", language)}</h3>
-              <p className="text-white/80 text-sm mb-3">
-                If a rectangle has length 8 cm and width 5 cm, what is its area?
-              </p>
-              <div className="flex justify-center gap-3">
-                {["13 cm²", "40 cm²", "26 cm²", "45 cm²"].map((opt, i) => (
-                  <button
-                    key={i}
-                    className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-xl font-bold text-sm transition-colors"
-                  >
-                    {opt}
-                  </button>
-                ))}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full -ml-24 -mb-24 blur-3xl" />
+              
+              <div className="relative z-10">
+                <Sparkles className="w-12 h-12 mx-auto mb-4 animate-pulse" />
+                <h3 className="font-poppins font-bold text-3xl mb-2">{t("dailyChallenge", language)}</h3>
+                <p className="text-white/80 text-lg mb-8 max-w-xl mx-auto">
+                  If a rectangle has length 8 cm and width 5 cm, what is its area?
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                  {["13 cm²", "40 cm²", "26 cm²", "45 cm²"].map((opt, i) => (
+                    <button
+                      key={i}
+                      className="bg-white/10 backdrop-blur-md hover:bg-white/30 border border-white/20 py-4 rounded-2xl font-bold text-sm transition-all duration-300 hover:scale-105 active:scale-95"
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </div>
               </div>
             </motion.section>
           </>
@@ -177,10 +211,14 @@ export default function HomePage() {
       </main>
 
       {/* Footer */}
-      <footer className="text-center py-6 text-gray-400 text-sm">
-        <p>🧪 FunLearn Lab © 2026 | Aligned with NEP 2020 & CBSE Curriculum</p>
-        <p className="mt-1">Resource Person: Dr. Syed Muzamil Basha, REVA University</p>
+      <footer className="text-center py-12 border-t border-gray-100 bg-white/50 backdrop-blur-sm">
+        <p className="text-gray-500 font-bold mb-2">🧪 FunLearn Lab © 2026</p>
+        <p className="text-gray-400 text-xs">Aligned with NEP 2020 & CBSE Curriculum Standards</p>
+        <p className="mt-3 text-primary font-bold text-sm">
+          Resource Person: Dr. Syed Muzamil Basha • REVA University
+        </p>
       </footer>
     </div>
   );
 }
+
