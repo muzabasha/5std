@@ -19,7 +19,7 @@ export const subjectsData: SubjectInfo[] = [
         icon: "🔢",
         color: "bg-indigo-500",
         gradient: "from-indigo-500 via-blue-500 to-cyan-500",
-        lightBg: "bg-indigo-100/80",
+        lightBg: "bg-indigo-200/60",
         accentColor: "text-indigo-900",
         topicCount: 10,
         description: {
@@ -34,7 +34,7 @@ export const subjectsData: SubjectInfo[] = [
         icon: "📖",
         color: "bg-emerald-500",
         gradient: "from-emerald-500 via-teal-500 to-cyan-600",
-        lightBg: "bg-emerald-100/80",
+        lightBg: "bg-emerald-200/60",
         accentColor: "text-emerald-900",
         topicCount: 6,
         description: {
@@ -49,7 +49,7 @@ export const subjectsData: SubjectInfo[] = [
         icon: "🇮🇳",
         color: "bg-orange-500",
         gradient: "from-orange-500 via-amber-500 to-yellow-500",
-        lightBg: "bg-orange-100/80",
+        lightBg: "bg-orange-200/60",
         accentColor: "text-orange-900",
         topicCount: 5,
         description: {
@@ -60,11 +60,11 @@ export const subjectsData: SubjectInfo[] = [
     },
     {
         id: "kannada",
-        name: { en: "Kannada", hi: "कन्नड़", kn: "ಕನ್ನಡ" },
+        name: { en: "Kannada", hi: "ಕನ್ನड़", kn: "ಕನ್ನಡ" },
         icon: "🏛️",
         color: "bg-rose-500",
         gradient: "from-rose-500 via-pink-500 to-fuchsia-500",
-        lightBg: "bg-rose-100/80",
+        lightBg: "bg-rose-200/60",
         accentColor: "text-rose-900",
         topicCount: 5,
         description: {
@@ -79,7 +79,7 @@ export const subjectsData: SubjectInfo[] = [
         icon: "🔬",
         color: "bg-cyan-500",
         gradient: "from-cyan-500 via-sky-500 to-blue-600",
-        lightBg: "bg-sky-100/80",
+        lightBg: "bg-sky-200/60",
         accentColor: "text-sky-900",
         topicCount: 7,
         description: {
@@ -90,11 +90,11 @@ export const subjectsData: SubjectInfo[] = [
     },
     {
         id: "social",
-        name: { en: "Social Studies", hi: "सामाजिक अध्ययन", kn: "ಸಮಾಜ ಅಧ್ಯयನ" },
+        name: { en: "Social Studies", hi: "सामाजिक अध्ययन", kn: "ಸಮಾಜ ಅಧ್ಯಯನ" },
         icon: "🌍",
         color: "bg-violet-500",
         gradient: "from-violet-500 via-purple-500 to-indigo-600",
-        lightBg: "bg-violet-100/80",
+        lightBg: "bg-violet-200/60",
         accentColor: "text-violet-900",
         topicCount: 5,
         description: {
