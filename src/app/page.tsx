@@ -92,10 +92,10 @@ export default function HomePage() {
                 </div>
                 <div className="text-left">
                   <p className="text-primary font-black text-lg">
-                    {t("welcome", language)}, {userName}! 👋
+                    {t("welcome", language)}, Sadiya! 👋
                   </p>
                   <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">
-                    Student • Grade {grade}
+                    Sadiya • Grade {grade}
                   </p>
                 </div>
               </motion.div>

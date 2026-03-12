@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { Volume2, VolumeX, Star, Coins } from "lucide-react";
 
 export default function Navbar() {
-    const { language, setLanguage, stars, coins, voiceEnabled, toggleVoice, userName, avatar } = useAppStore();
+    const { language, setLanguage, stars, coins, voiceEnabled, toggleVoice, userName, avatar, grade } = useAppStore();
 
     return (
         <motion.nav
@@ -34,8 +34,8 @@ export default function Navbar() {
                     <div className="hidden md:flex items-center gap-3 bg-white/50 px-4 py-1.5 rounded-2xl border border-white shadow-sm">
                         <span className="text-xl">{avatar}</span>
                         <div className="flex flex-col">
-                            <span className="text-xs font-bold text-gray-400 uppercase tracking-tighter leading-none">Student</span>
-                            <span className="text-sm font-black text-primary leading-none">{userName}</span>
+                            <span className="text-xs font-bold text-gray-400 uppercase tracking-tighter leading-none">Grade {grade}</span>
+                            <span className="text-sm font-black text-primary leading-none">Sadiya</span>
                         </div>
                     </div>
 
