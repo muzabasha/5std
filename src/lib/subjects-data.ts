@@ -15,8 +15,8 @@ export const subjectsData: SubjectInfo[] = [
         id: "math",
         name: { en: "Mathematics", hi: "गणित", kn: "ಗಣಿತ" },
         icon: "🔢",
-        color: "bg-primary",
-        gradient: "from-primary to-blue-600",
+        color: "bg-indigo-500",
+        gradient: "from-indigo-500 via-blue-500 to-cyan-500",
         topicCount: 10,
         description: {
             en: "Explore numbers, shapes, and patterns through fun activities!",
@@ -28,8 +28,8 @@ export const subjectsData: SubjectInfo[] = [
         id: "english",
         name: { en: "English", hi: "अंग्रेज़ी", kn: "ಇಂಗ್ಲಿಷ್" },
         icon: "📖",
-        color: "bg-success",
-        gradient: "from-success to-green-600",
+        color: "bg-emerald-500",
+        gradient: "from-emerald-500 via-teal-500 to-cyan-600",
         topicCount: 6,
         description: {
             en: "Build vocabulary, grammar, and reading skills with stories!",
@@ -41,8 +41,8 @@ export const subjectsData: SubjectInfo[] = [
         id: "hindi",
         name: { en: "Hindi", hi: "हिंदी", kn: "ಹಿಂದಿ" },
         icon: "🇮🇳",
-        color: "bg-accent",
-        gradient: "from-accent to-orange-600",
+        color: "bg-orange-500",
+        gradient: "from-orange-500 via-amber-500 to-yellow-500",
         topicCount: 5,
         description: {
             en: "Learn Hindi through interactive word and sentence building!",
@@ -54,8 +54,8 @@ export const subjectsData: SubjectInfo[] = [
         id: "kannada",
         name: { en: "Kannada", hi: "कन्नड़", kn: "ಕನ್ನಡ" },
         icon: "🏛️",
-        color: "bg-fun-purple",
-        gradient: "from-fun-purple to-purple-700",
+        color: "bg-rose-500",
+        gradient: "from-rose-500 via-pink-500 to-fuchsia-500",
         topicCount: 5,
         description: {
             en: "Discover Kannada through letters, words, and stories!",
@@ -67,8 +67,8 @@ export const subjectsData: SubjectInfo[] = [
         id: "science",
         name: { en: "Science", hi: "विज्ञान", kn: "ವಿಜ್ಞಾನ" },
         icon: "🔬",
-        color: "bg-fun-teal",
-        gradient: "from-fun-teal to-teal-600",
+        color: "bg-cyan-500",
+        gradient: "from-cyan-500 via-sky-500 to-blue-600",
         topicCount: 7,
         description: {
             en: "Experiment with the wonders of nature and the human body!",
@@ -80,8 +80,8 @@ export const subjectsData: SubjectInfo[] = [
         id: "social",
         name: { en: "Social Studies", hi: "सामाजिक अध्ययन", kn: "ಸಮಾಜ ಅಧ್ಯಯನ" },
         icon: "🌍",
-        color: "bg-fun-pink",
-        gradient: "from-fun-pink to-pink-600",
+        color: "bg-violet-500",
+        gradient: "from-violet-500 via-purple-500 to-indigo-600",
         topicCount: 5,
         description: {
             en: "Explore maps, history, and the world around you!",
@@ -90,3 +90,4 @@ export const subjectsData: SubjectInfo[] = [
         },
     },
 ];
+

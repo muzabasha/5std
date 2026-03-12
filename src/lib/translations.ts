@@ -13,7 +13,7 @@ type TranslationKey =
     | "largeNumbers" | "factorsMultiples" | "perimeterArea" | "volume"
     | "timeMoney" | "vocabulary" | "grammar" | "sentences" | "paragraphs"
     | "reading" | "storySequencing" | "explore" | "understand" | "experiment"
-    | "practice" | "apply" | "score" | "outOf";
+    | "practice" | "apply" | "score" | "outOf" | "topics" | "exploringTopics";
 
 const translations: Record<Language, Record<TranslationKey, string>> = {
     en: {
@@ -84,6 +84,8 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
         apply: "Apply",
         score: "Score",
         outOf: "out of",
+        topics: "Topics",
+        exploringTopics: "Exploring Topics",
     },
     hi: {
         appName: "फनलर्न लैब",
@@ -153,6 +155,8 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
         apply: "लागू करें",
         score: "अंक",
         outOf: "में से",
+        topics: "विषय",
+        exploringTopics: "विषय अन्वेषण",
     },
     kn: {
         appName: "ಫನ್‌ಲರ್ನ್ ಲ್ಯಾಬ್",
@@ -222,6 +226,8 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
         apply: "ಅನ್ವಯಿಸಿ",
         score: "ಅಂಕ",
         outOf: "ರಲ್ಲಿ",
+        topics: "ವಿಷಯಗಳು",
+        exploringTopics: "ವಿಷಯಗಳ ಅನ್ವೇಷಣೆ",
     },
 };
 
