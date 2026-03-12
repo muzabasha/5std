@@ -37,7 +37,7 @@ export default function HomePage() {
           <button
             onClick={() => setActiveTab("home")}
             className={`flex items-center gap-2 px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 ${activeTab === "home"
-              ? "bg-primary text-white shadow-xl shadow-primary/30"
+              ? "bg-indigo-600 text-white shadow-xl shadow-indigo-200"
               : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
               }`}
           >
@@ -47,7 +47,7 @@ export default function HomePage() {
           <button
             onClick={() => setActiveTab("resource")}
             className={`flex items-center gap-2 px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 ${activeTab === "resource"
-              ? "bg-primary text-white shadow-xl shadow-primary/30"
+              ? "bg-emerald-600 text-white shadow-xl shadow-emerald-200"
               : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
               }`}
           >
@@ -124,11 +124,11 @@ export default function HomePage() {
             >
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 {[
-                  { icon: "🔍", label: t("explore", language), color: "bg-primary/10 text-primary border-primary/20" },
-                  { icon: "💡", label: t("understand", language), color: "bg-warning/10 text-warning border-warning/20" },
-                  { icon: "🧪", label: t("experiment", language), color: "bg-success/10 text-success border-success/20" },
-                  { icon: "✏️", label: t("practice", language), color: "bg-accent/10 text-accent border-accent/20" },
-                  { icon: "🚀", label: t("apply", language), color: "bg-fun-purple/10 text-fun-purple border-fun-purple/20" },
+                  { icon: "🔍", label: t("explore", language), color: "bg-blue-100 text-blue-700 border-blue-200" },
+                  { icon: "💡", label: t("understand", language), color: "bg-amber-100 text-amber-700 border-amber-200" },
+                  { icon: "🧪", label: t("experiment", language), color: "bg-emerald-100 text-emerald-700 border-emerald-200" },
+                  { icon: "✏️", label: t("practice", language), color: "bg-rose-100 text-rose-700 border-rose-200" },
+                  { icon: "🚀", label: t("apply", language), color: "bg-violet-100 text-violet-700 border-violet-200" },
                 ].map((step, i) => (
                   <motion.div
                     key={i}
@@ -174,9 +174,9 @@ export default function HomePage() {
             {/* Features */}
             <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
               {[
-                { icon: <BookOpen className="w-8 h-8" />, title: "Story-Based Learning", desc: "Learn through engaging stories and real-life scenarios", color: "text-primary", bg: "bg-primary/5" },
-                { icon: <Gamepad2 className="w-8 h-8" />, title: "Fun Games & Activities", desc: "Interactive games, puzzles, and drag-drop activities", color: "text-success", bg: "bg-success/5" },
-                { icon: <Brain className="w-8 h-8" />, title: "Smart Quizzes", desc: "Test your knowledge with instant feedback", color: "text-fun-purple", bg: "bg-fun-purple/5" },
+                { icon: <BookOpen className="w-8 h-8" />, title: "Story-Based Learning", desc: "Learn through engaging stories and real-life scenarios", color: "text-amber-600", bg: "bg-amber-50" },
+                { icon: <Gamepad2 className="w-8 h-8" />, title: "Fun Games & Activities", desc: "Interactive games, puzzles, and drag-drop activities", color: "text-pink-600", bg: "bg-pink-50" },
+                { icon: <Brain className="w-8 h-8" />, title: "Smart Quizzes", desc: "Test your knowledge with instant feedback", color: "text-indigo-600", bg: "bg-indigo-50" },
               ].map((f, i) => (
                 <motion.div
                   key={i}
@@ -231,9 +231,9 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="text-center py-12 border-t border-gray-100 bg-white/50 backdrop-blur-sm">
-        <p className="text-gray-500 font-bold mb-2">🧪 FunLearn Lab © 2026</p>
-        <p className="text-gray-400 text-xs">Aligned with NEP 2020 & CBSE Curriculum Standards</p>
-        <p className="mt-3 text-primary font-bold text-sm">
+        <p className="text-gray-400 font-bold mb-2">🧪 FunLearn Lab © 2026</p>
+        <p className="text-gray-300 text-xs">Aligned with NEP 2020 & CBSE Curriculum Standards</p>
+        <p className="mt-3 text-emerald-600 font-black text-sm uppercase tracking-tighter">
           Resource Person: Dr. Syed Muzamil Basha • REVA University
         </p>
       </footer>
