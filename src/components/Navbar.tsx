@@ -1,10 +1,9 @@
 "use client";
 import { useAppStore } from "@/lib/store";
-import { t } from "@/lib/translations";
 import { Language } from "@/lib/types";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Volume2, VolumeX, Star, Coins } from "lucide-react";
+import { Star, Coins } from "lucide-react";
 
 export default function Navbar() {
     const { language, setLanguage, stars, coins, voiceEnabled, toggleVoice, userName, avatar, grade } = useAppStore();

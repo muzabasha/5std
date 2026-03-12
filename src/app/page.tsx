@@ -13,7 +13,7 @@ import { Sparkles, BookOpen, Gamepad2, Brain, Home, UserCircle } from "lucide-re
 type Tab = "home" | "resource";
 
 export default function HomePage() {
-  const { language, userName, grade, avatar } = useAppStore();
+  const { language, userName, avatar } = useAppStore();
   const [activeTab, setActiveTab] = useState<Tab>("home");
 
   const hour = new Date().getHours();

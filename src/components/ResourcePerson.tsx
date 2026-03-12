@@ -39,7 +39,7 @@ export default function ResourcePerson() {
                         {title}
                     </h2>
                     <p className="text-white/60 text-xl max-w-xl mx-auto font-medium leading-relaxed italic">
-                        "{subtitle}"
+                        &quot;{subtitle}&quot;
                     </p>
                 </div>
 
