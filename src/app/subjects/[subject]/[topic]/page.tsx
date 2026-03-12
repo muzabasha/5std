@@ -8,6 +8,8 @@ import { motion } from "framer-motion";
 import { useAppStore } from "@/lib/store";
 import { subjectsData } from "@/lib/subjects-data";
 import { getTopicsForSubject } from "@/lib/topic-data";
+import { TopicInfo } from "@/lib/topic-data";
+import { SubjectInfo } from "@/lib/subjects-data";
 import MathFractions from "@/components/lessons/MathFractions";
 import MathPerimeterArea from "@/components/lessons/MathPerimeterArea";
 import MathDataHandling from "@/components/lessons/MathDataHandling";
@@ -22,30 +24,56 @@ import SocialMaps from "@/components/lessons/SocialMaps";
 import SocialGeography from "@/components/lessons/SocialGeography";
 import GenericLesson from "@/components/lessons/GenericLesson";
 
-const lessonComponents: Record<string, Record<string, React.ComponentType>> = {
+const lessonComponents: Record<string, Record<string, React.ComponentType<{topic?: TopicInfo; subject?: SubjectInfo}>>> = {
     math: {
         fractions: MathFractions,
         "perimeter-area": MathPerimeterArea,
         "data-handling": MathDataHandling,
+        "large-numbers": GenericLesson,
+        "factors-multiples": GenericLesson,
+        decimals: GenericLesson,
+        geometry: GenericLesson,
+        volume: GenericLesson,
+        measurement: GenericLesson,
+        "time-money": GenericLesson,
     },
     english: {
         sentences: EnglishSentences,
         grammar: EnglishGrammar,
+        vocabulary: GenericLesson,
+        paragraphs: GenericLesson,
+        reading: GenericLesson,
+        "story-sequencing": GenericLesson,
     },
     hindi: {
         "shabd-nirman": HindiShabdNirman,
+        "swar-vyanjan": GenericLesson,
+        "vakya-rachna": GenericLesson,
+        "anuchhed-lekhan": GenericLesson,
+        "pathan-samajh": GenericLesson,
     },
     kannada: {
         "pada-rachane": KannadaPadaRachane,
+        "swaragalu-vyanjanagalu": GenericLesson,
+        "vakya-rachane": GenericLesson,
+        "anuccheda-odu": GenericLesson,
+        "artha-grahike": GenericLesson,
     },
     science: {
         plants: SciencePlants,
         "human-body": ScienceHumanBody,
         "animals-habitats": ScienceAnimals,
+        "food-nutrition": GenericLesson,
+        "matter-materials": GenericLesson,
+        "force-energy": GenericLesson,
+        "simple-machines": GenericLesson,
     },
     social: {
         "maps-directions": SocialMaps,
         "indian-geography": SocialGeography,
+        "natural-resources": GenericLesson,
+        "indian-history": GenericLesson,
+        "civics-community": GenericLesson,
     },
 };
 
@@ -116,7 +144,7 @@ export default function TopicPage() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.2 }}
                 >
-                    <LessonComponent />
+                    <LessonComponent topic={topic} subject={subject} />
                 </motion.div>
             </main>
         </div>
