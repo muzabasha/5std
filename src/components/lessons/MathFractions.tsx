@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { quizDatabase } from "@/lib/quiz-database";
 import { useAppStore } from "@/lib/store";
 import { speak } from "@/lib/voice";
 import StoryPlayer from "@/components/StoryPlayer";
@@ -54,33 +55,7 @@ export default function MathFractions() {
         }
     };
 
-    const quizQuestions = [
-        {
-            id: "f1", question: { en: "What fraction of a pizza is 3 slices out of 8?", hi: "8 में से 3 टुकड़े पिज़्ज़ा का कौन सा भिन्न है?", kn: "8 ತುಂಡುಗಳಲ್ಲಿ 3 ತುಂಡು ಪಿಜ್ಜಾದ ಯಾವ ಭಿನ್ನರಾಶಿ?" },
-            options: { en: ["3/8", "8/3", "1/3", "3/4"], hi: ["3/8", "8/3", "1/3", "3/4"], kn: ["3/8", "8/3", "1/3", "3/4"] },
-            correctIndex: 0, explanation: { en: "3 out of 8 slices = 3/8", hi: "8 में से 3 = 3/8", kn: "8 ರಲ್ಲಿ 3 = 3/8" },
-        },
-        {
-            id: "f2", question: { en: "Which is greater: 1/2 or 1/4?", hi: "कौन बड़ा है: 1/2 या 1/4?", kn: "ಯಾವುದು ದೊಡ್ಡದು: 1/2 ಅಥವಾ 1/4?" },
-            options: { en: ["1/2", "1/4", "Both equal", "Cannot tell"], hi: ["1/2", "1/4", "दोनों बराबर", "पता नहीं"], kn: ["1/2", "1/4", "ಎರಡೂ ಸಮ", "ಹೇಳಲಾಗದು"] },
-            correctIndex: 0, explanation: { en: "1/2 is greater because half is more than a quarter", hi: "1/2 बड़ा है क्योंकि आधा, चौथाई से ज़्यादा है", kn: "1/2 ದೊಡ್ಡದು ಏಕೆಂದರೆ ಅರ್ಧ ಕಾಲುಭಾಗಕ್ಕಿಂತ ಹೆಚ್ಚು" },
-        },
-        {
-            id: "f3", question: { en: "What is 1/4 + 1/4?", hi: "1/4 + 1/4 = ?", kn: "1/4 + 1/4 = ?" },
-            options: { en: ["2/4 or 1/2", "2/8", "1/8", "1/4"], hi: ["2/4 या 1/2", "2/8", "1/8", "1/4"], kn: ["2/4 ಅಥವಾ 1/2", "2/8", "1/8", "1/4"] },
-            correctIndex: 0, explanation: { en: "1/4 + 1/4 = 2/4 = 1/2", hi: "1/4 + 1/4 = 2/4 = 1/2", kn: "1/4 + 1/4 = 2/4 = 1/2" },
-        },
-        {
-            id: "f4", question: { en: "If 8 slices are shared among 4 friends, how many slices each?", hi: "8 टुकड़े 4 दोस्तों में बाँटें तो हर एक को कितने?", kn: "8 ತುಂಡುಗಳನ್ನು 4 ಸ್ನೇಹಿತರಲ್ಲಿ ಹಂಚಿದರೆ ಪ್ರತಿಯೊಬ್ಬರಿಗೆ ಎಷ್ಟು?" },
-            options: { en: ["2", "4", "3", "1"], hi: ["2", "4", "3", "1"], kn: ["2", "4", "3", "1"] },
-            correctIndex: 0, explanation: { en: "8 ÷ 4 = 2 slices each", hi: "8 ÷ 4 = 2 टुकड़े प्रत्येक", kn: "8 ÷ 4 = ಪ್ರತಿಯೊಬ್ಬರಿಗೆ 2 ತುಂಡು" },
-        },
-        {
-            id: "f5", question: { en: "What fraction is shaded? ■■■□□□□□", hi: "कितना भाग रंगा है? ■■■□□□□□", kn: "ಎಷ್ಟು ಭಾಗ ಬಣ್ಣ ಹಾಕಲಾಗಿದೆ? ■■■□□□□□" },
-            options: { en: ["3/8", "5/8", "3/5", "8/3"], hi: ["3/8", "5/8", "3/5", "8/3"], kn: ["3/8", "5/8", "3/5", "8/3"] },
-            correctIndex: 0, explanation: { en: "3 shaded out of 8 total = 3/8", hi: "8 में से 3 रंगे = 3/8", kn: "8 ರಲ್ಲಿ 3 ಬಣ್ಣ = 3/8" },
-        },
-    ];
+    
 
     return (
         <div className="space-y-6">
@@ -221,7 +196,7 @@ export default function MathFractions() {
 
             {/* QUIZ PHASE */}
             {phase === "quiz" && (
-                <QuizEngine questions={quizQuestions} onComplete={() => setTimeout(() => setPhase("realworld"), 1500)} />
+                <QuizEngine questions={quizDatabase["MathFractions"] || []} onComplete={() => setTimeout(() => setPhase("realworld"), 1500)} />
             )}
 
             {/* REAL WORLD PHASE */}

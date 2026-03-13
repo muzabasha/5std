@@ -7,13 +7,15 @@ import { TopicInfo } from "@/lib/topic-data";
 import { SubjectInfo } from "@/lib/subjects-data";
 import { universalTopicContent } from "@/lib/topic-content";
 import StoryPlayer from "@/components/StoryPlayer";
+import QuizEngine from "@/components/QuizEngine";
+import { quizDatabase } from "@/lib/quiz-database";
 
 interface GenericLessonProps {
     topic?: TopicInfo;
     subject?: SubjectInfo;
 }
 
-type Phase = "story" | "concept" | "activity" | "realworld";
+type Phase = "story" | "concept" | "activity" | "quiz" | "realworld";
 
 export default function GenericLesson({ topic, subject }: GenericLessonProps) {
     const { language } = useAppStore();
@@ -56,6 +58,7 @@ export default function GenericLesson({ topic, subject }: GenericLessonProps) {
                     { id: "story", icon: <BookOpen className="w-4 h-4" />, label: "Story" },
                     { id: "concept", icon: <Lightbulb className="w-4 h-4" />, label: "Learn" },
                     { id: "activity", icon: <Gamepad2 className="w-4 h-4" />, label: "Activity" },
+                    { id: "quiz", icon: <BookOpen className="w-4 h-4" />, label: "Quiz" },
                     { id: "realworld", icon: <Globe className="w-4 h-4" />, label: "World" },
                 ].map((t) => (
                     <button
@@ -158,12 +161,19 @@ export default function GenericLesson({ topic, subject }: GenericLessonProps) {
                             )}
 
                             <div className="mt-12 p-6 bg-gray-50 rounded-3xl border border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4">
-                                <span className="text-gray-400 font-bold uppercase tracking-widest text-xs">Ready for the World?</span>
-                                <button onClick={() => setPhase("realworld")} className={`flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-br ${subject?.gradient} text-white font-black text-sm shadow-xl hover:scale-105 transition-transform`}>
-                                    Take Leap <ArrowRight className="w-4 h-4" />
+                                <span className="text-gray-400 font-bold uppercase tracking-widest text-xs">Ready for a Challenge?</span>
+                                <button onClick={() => setPhase("quiz")} className={`flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-br ${subject?.gradient} text-white font-black text-sm shadow-xl hover:scale-105 transition-transform`}>
+                                    Take Quiz <ArrowRight className="w-4 h-4" />
                                 </button>
                             </div>
                         </div>
+                    )}
+
+                    {phase === "quiz" && (
+                        <QuizEngine
+                            questions={topic?.id && quizDatabase[topic.id] ? quizDatabase[topic.id] : []}
+                            onComplete={() => setTimeout(() => setPhase("realworld"), 1500)}
+                        />
                     )}
 
                     {phase === "realworld" && (
