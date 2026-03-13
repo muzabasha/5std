@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useAppStore } from "@/lib/store";
 import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, Gamepad2, Sparkles, ArrowRight, Lightbulb, Globe, Construction } from "lucide-react";
+import { BookOpen, Gamepad2, Sparkles, ArrowRight, Lightbulb, Globe } from "lucide-react";
 import { TopicInfo } from "@/lib/topic-data";
 import { SubjectInfo } from "@/lib/subjects-data";
 import { universalTopicContent } from "@/lib/topic-content";
@@ -18,40 +18,34 @@ type Phase = "story" | "concept" | "activity" | "realworld";
 export default function GenericLesson({ topic, subject }: GenericLessonProps) {
     const { language } = useAppStore();
     const [phase, setPhase] = useState<Phase>("story");
-    const content = topic ? universalTopicContent[topic.id] : null;
+    const content = topic ? (universalTopicContent[topic.id] || {
+        story: [
+            { emoji: "🚀", text: { en: `Let's start learning about ${topic.name.en}!`, hi: `आइए ${topic.name.hi} के बारे में सीखना शुरू करें!`, kn: `${topic.name.kn} ಬಗ್ಗೆ ಕಲಿಯಲು ಪ್ರಾರಂಭಿಸೋಣ!` } },
+            { emoji: "💡", text: { en: topic.description.en, hi: topic.description.hi, kn: topic.description.kn } },
+        ],
+        concept: {
+            title: { en: `${topic.name.en} Concepts`, hi: `${topic.name.hi} अवधारणाएं`, kn: `${topic.name.kn} ಪರಿಕಲ್ಪನೆಗಳು` },
+            description: { en: `Welcome to the wonderful world of ${topic.name.en}. Here we will explore its core principles.`, hi: `${topic.name.hi} की अद्भुत दुनिया में आपका स्वागत है। यहां हम इसके मूल सिद्धांतों का पता लगाएंगे।`, kn: `${topic.name.kn} ದ ಅದ್ಭುತ ಜಗತ್ತಿಗೆ ಸುಸ್ವಾಗತ. ಇಲ್ಲಿ ನಾವು ಅದರ ಮೂಲ ತತ್ವಗಳನ್ನು ಅನ್ವೇಷಿಸುತ್ತೇವೆ.` },
+            points: [
+                { en: "Understanding the basics", hi: "मूल बातों को समझना", kn: "ಮೂಲ ವಿಷಯಗಳನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವುದು" },
+                { en: "Practicing with examples", hi: "उदाहरणों के साथ अभ्यास करना", kn: "ಉದಾಹರಣೆಗಳೊಂದಿಗೆ ಅಭ್ಯಾಸ ಮಾಡುವುದು" },
+            ]
+        },
+        activity: {
+            type: "visual",
+            data: [topic.name.en, "Explore", "Learn"]
+        },
+        realWorld: [
+            { 
+                emoji: "🌍", 
+                title: { en: "In Real Life", hi: "असल जिंदगी में", kn: "ನಿಜ ಜೀವನದಲ್ಲಿ" }, 
+                desc: { en: `${topic.name.en} helps us in our everyday life by solving problems.`, hi: `${topic.name.hi} समस्याओं को हल करने में हमारे रोजमर्रा के जीवन में हमारी मदद करता है।`, kn: `${topic.name.kn} ಸಮಸ್ಯೆಗಳನ್ನು ಪರಿಹರಿಸುವ ಮೂಲಕ ನಮ್ಮ ದಿನನಿತ್ಯದ ಜೀವನದಲ್ಲಿ ನಮಗೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ.` } 
+            }
+        ]
+    }) : null;
 
     if (!content) {
-        return (
-            <motion.div 
-                initial={{ opacity: 0, y: 20 }} 
-                animate={{ opacity: 1, y: 0 }}
-                className="max-w-4xl mx-auto"
-            >
-                <div className="bg-white rounded-[3rem] shadow-2xl shadow-black/5 overflow-hidden border border-gray-100">
-                    <div className={`relative p-12 text-center bg-gradient-to-br ${subject?.gradient || 'from-indigo-500 to-purple-600'} text-white overflow-hidden`}>
-                        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-                            <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full -ml-32 -mt-32 blur-3xl" />
-                        </div>
-                        <motion.div animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="relative z-10 w-24 h-24 bg-white/20 backdrop-blur-xl rounded-[2rem] flex items-center justify-center mx-auto mb-6 border border-white/30 text-white shadow-2xl">
-                            <Sparkles className="w-12 h-12" />
-                        </motion.div>
-                        <h2 className="relative z-10 font-poppins font-black text-4xl mb-4 tracking-tight">
-                            {language === "hi" ? "अन्वेषण केंद्र" : language === "kn" ? "ಅನ್ವೇಷಣಾ ಕೇಂದ್ರ" : "Discovery Hub"}
-                        </h2>
-                        <p className="relative z-10 text-white/80 text-lg font-medium max-w-xl mx-auto">
-                            {language === "hi" 
-                                ? `${topic?.name[language]} के लिए हम एक अद्भुत अनुभवात्मक लैब तैयार कर रहे हैं!` 
-                                : `We are engineering a high-fidelity experiential lab for ${topic?.name[language]}!`}
-                        </p>
-                    </div>
-                    <div className="p-12 bg-white text-center">
-                        <Construction className="w-16 h-16 text-orange-400 mx-auto mb-6" />
-                        <h3 className="font-bold text-2xl text-gray-800 mb-4">Module Preparation in Progress</h3>
-                        <p className="text-gray-500 max-w-md mx-auto">Please check other topics while we finish this amazing immersive experience for Sadiya.</p>
-                    </div>
-                </div>
-            </motion.div>
-        );
+        return <div aria-hidden className="hidden" />;
     }
 
     return (
